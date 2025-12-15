@@ -1,0 +1,248 @@
+/* ---------- Base layout ---------- */
+:root{
+  --bg1:#f6f7ff;
+  --bg2:#f7fbff;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --border:rgba(17,24,39,.12);
+
+  --primary:#4f46e5;
+  --primary2:#22c55e;
+  --accent:#06b6d4;
+
+  --danger:#ef4444;
+  --warn:#f59e0b;
+  --success:#22c55e;
+
+  --shadow: 0 18px 50px rgba(0,0,0,.08);
+  --radius:16px;
+}
+
+* { box-sizing: border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(900px 500px at 10% 10%, rgba(79,70,229,.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 20%, rgba(34,197,94,.18), transparent 60%),
+    radial-gradient(900px 500px at 50% 90%, rgba(6,182,212,.14), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  padding: 42px 16px;
+}
+
+/* Center everything nicely */
+h1{
+  max-width: 880px;
+  margin: 0 auto 18px;
+  font-size: clamp(28px, 3.2vw, 44px);
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+/* ---------- Form card ---------- */
+#contactForm{
+  max-width: 880px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 22px;
+}
+
+/* Two-column responsive grid */
+#contactForm{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 18px;
+}
+
+/* Make some fields full width */
+#contactForm label[for="phone"],
+#contactForm label[for="address"],
+#contactForm label[for="email"]{
+  /* labels stay normal */
+}
+#phone, #address, #email{
+  /* inputs adjust */
+}
+
+label{
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  display:block;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"]{
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: rgba(255,255,255,.9);
+  transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus{
+  border-color: rgba(79,70,229,.55);
+  box-shadow: 0 0 0 4px rgba(79,70,229,.12);
+}
+
+small.field-error{
+  display:block;
+  min-height: 16px;
+  margin-top: 6px;
+  color: var(--danger);
+  font-size: 0.85rem;
+}
+
+/* Invalid */
+.is-invalid{
+  border-color: rgba(239,68,68,.75) !important;
+  box-shadow: 0 0 0 4px rgba(239,68,68,.12) !important;
+}
+
+/* Make Email/Phone/Address span full row for nicer look */
+#email, #phone, #address{
+  grid-column: 1 / -1;
+  max-width: 540px;
+}
+
+/* But keep labels aligned with them (since HTML uses label + input separately) */
+#contactForm > br { display:none; } /* hides the <br><br> spacing */
+
+/* Ratings block: full width */
+#rating1, #rating2, #rating3{
+  width: 260px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+#contactForm label:has(#rating1),
+#contactForm label:has(#rating2),
+#contactForm label:has(#rating3){
+  grid-column: 1 / -1;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 800;
+}
+
+#r1Value, #r2Value, #r3Value{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 34px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(79,70,229,.10), rgba(6,182,212,.08));
+  font-weight: 800;
+}
+
+/* Range slider styling (modern but safe) */
+input[type="range"]{
+  accent-color: var(--primary);
+}
+
+/* Submit button */
+#submitBtn{
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  color: white;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  box-shadow: 0 10px 25px rgba(79,70,229,.18);
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease, opacity .12s ease;
+}
+
+#submitBtn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+#submitBtn:active{ transform: translateY(0px); }
+#submitBtn:disabled{
+  opacity: .45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---------- Results block ---------- */
+.form-results{
+  max-width: 880px;
+  margin: 16px auto 0;
+  padding: 18px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.75));
+  box-shadow: var(--shadow);
+  display: none;
+}
+
+.form-results p{
+  margin: 0;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.avg-line{
+  margin-top: 10px;
+  font-weight: 900;
+}
+
+/* Average colors */
+.avg-red{ color: var(--danger); }
+.avg-orange{ color: var(--warn); }
+.avg-green{ color: var(--success); }
+
+/* ---------- Success popup ---------- */
+.success-popup{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--primary2), var(--accent));
+  color: #fff;
+  box-shadow: 0 14px 40px rgba(0,0,0,.18);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.success-popup.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px){
+  #contactForm{
+    grid-template-columns: 1fr;
+    padding: 18px 16px;
+  }
+
+  #email, #phone, #address{
+    max-width: 100%;
+  }
+
+  #rating1, #rating2, #rating3{
+    width: 200px;
+  }
+}

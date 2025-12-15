@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Form Lab</title>
+
+  <link rel="stylesheet" href="assets/css/custom.css" />
+</head>
+<body>
+
+  <h1>Contact Form</h1>
+
+  <form id="contactForm">
+    <label for="firstName">Name:</label>
+    <input type="text" id="firstName" autocomplete="given-name" />
+    <small class="field-error" id="err-firstName"></small>
+    <br><br>
+
+    <label for="lastName">Surname:</label>
+    <input type="text" id="lastName" autocomplete="family-name" />
+    <small class="field-error" id="err-lastName"></small>
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" autocomplete="email" />
+    <small class="field-error" id="err-email"></small>
+    <br><br>
+
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" placeholder="+370 6XX XXXXX" autocomplete="tel" />
+    <small class="field-error" id="err-phone"></small>
+    <br><br>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" autocomplete="street-address" />
+    <small class="field-error" id="err-address"></small>
+    <br><br>
+
+    <label>
+      Rating 1:
+      <input type="range" id="rating1" min="1" max="10" value="5" />
+      <span id="r1Value">5</span>
+    </label>
+    <br><br>
+
+    <label>
+      Rating 2:
+      <input type="range" id="rating2" min="1" max="10" value="5" />
+      <span id="r2Value">5</span>
+    </label>
+    <br><br>
+
+    <label>
+      Rating 3:
+      <input type="range" id="rating3" min="1" max="10" value="5" />
+      <span id="r3Value">5</span>
+    </label>
+    <br><br>
+
+    <button id="submitBtn" type="submit" disabled>Submit</button>
+  </form>
+
+  <div id="formResults" class="form-results" aria-live="polite"></div>
+
+  <div id="successPopup" class="success-popup" role="status" aria-live="polite">
+    Form submitted successfully!
+  </div>
+
+  <script src="assets/js/custom.js"></script>
+</body>
+</html>
